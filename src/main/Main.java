@@ -2,6 +2,7 @@ package main;
 
 import controller.IJPaintController;
 import controller.JPaintController;
+import controller.MyMouseListener;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -19,11 +20,15 @@ public class Main {
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
         IJPaintController controller = new JPaintController(uiModule, appState);
+
         controller.setup();
+
+        MyMouseListener handler=new MyMouseListener(paintCanvas);
+        paintCanvas.addMouseListener(handler);
 
         // For example purposes only; remove all lines below from your final project.
 
-        try {
+        /*try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -46,6 +51,11 @@ public class Main {
         graphics2d.drawRect(7, 8, 210, 410);
 
         // Clears the Canvas
-        //paintCanvas.repaint();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        paintCanvas.repaint();*/
     }
 }
