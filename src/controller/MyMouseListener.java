@@ -1,6 +1,7 @@
 package controller;
 
 import model.Point;
+import model.interfaces.IApplicationState;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
@@ -16,8 +17,12 @@ public class MyMouseListener extends MouseAdapter {
 
     private PaintCanvasBase paintCanvas;
 
-    public MyMouseListener(PaintCanvasBase paintCanvas){
+    private IApplicationState appState;
+
+
+    public MyMouseListener(PaintCanvasBase paintCanvas, IApplicationState appState){
         this.paintCanvas = paintCanvas;
+        this.appState = appState;
     }
 
     @Override
@@ -36,7 +41,7 @@ public class MyMouseListener extends MouseAdapter {
         int height = Math.abs(e.getY() - startPoint.getY());
 
         ICommand draw = new drawCommand(paintCanvas, width, height, Math.min(startPoint.getX(),e.getX()),
-                Math.min(startPoint.getY(), e.getY()));
+                Math.min(startPoint.getY(), e.getY()), appState);
         draw.run();
 
 

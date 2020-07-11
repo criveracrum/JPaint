@@ -23,7 +23,7 @@ public class Main {
 
         controller.setup();
 
-        MyMouseListener handler=new MyMouseListener(paintCanvas);
+        MyMouseListener handler=new MyMouseListener(paintCanvas, appState);
         paintCanvas.addMouseListener(handler);
 
         // For example purposes only; remove all lines below from your final project.
