@@ -24,6 +24,7 @@ public class Shape implements IShape {
 
 
 
+
     public Shape(int width, int height, int xPoint, int yPoint, IApplicationState appState, PaintCanvasBase paintCanvas) {
         this.width = width;
         this.height = height;
@@ -110,13 +111,13 @@ public class Shape implements IShape {
     }
 
     @Override
-    public ShapeColor getPrimaryColor() {
-        return primaryColor;
+    public Color getPrimaryColor() {
+        return ShapeColor.getMap().get(primaryColor);
     }
 
     @Override
-    public ShapeColor getSecondaryColor() {
-        return secondaryColor;
+    public Color getSecondaryColor() {
+        return ShapeColor.getMap().get(secondaryColor);
     }
 
     @Override
@@ -131,22 +132,27 @@ public class Shape implements IShape {
 
     @Override
     public void draw() {
+        Graphics2D graphics2d = paintCanvas.getGraphics2D();
+
+
+        graphics2d.setColor(getPrimaryColor());
+
 
 
         if (shapeType == ShapeType.ELLIPSE) {
-            IShapeStrategy ellipse = new DrawEllipse(paintCanvas, width, height, xPoint, yPoint, appState);
+            IShapeStrategy ellipse = new DrawEllipse(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d);
             ellipse.draw();
 
 
         }
         else if (shapeType == ShapeType.RECTANGLE){
-            IShapeStrategy rectangle = new DrawRectangle(paintCanvas, width, height, xPoint, yPoint, appState);
+            IShapeStrategy rectangle = new DrawRectangle(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d);
             rectangle.draw();
 
 
         }
         else if (shapeType == ShapeType.TRIANGLE){
-            IShapeStrategy triangle = new DrawTriangle(paintCanvas, width, height, xPoint, yPoint, appState);
+            IShapeStrategy triangle = new DrawTriangle(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d);
             triangle.draw();
 
         }

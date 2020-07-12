@@ -3,6 +3,7 @@ package main;
 import controller.IJPaintController;
 import controller.JPaintController;
 import controller.MyMouseListener;
+import model.ShapeColor;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -12,6 +13,7 @@ import view.interfaces.PaintCanvasBase;
 import view.interfaces.IUiModule;
 
 import java.awt.*;
+import java.util.EnumMap;
 
 public class Main {
     public static void main(String[] args){
@@ -21,10 +23,13 @@ public class Main {
         ApplicationState appState = new ApplicationState(uiModule);
         IJPaintController controller = new JPaintController(uiModule, appState);
 
+        model.ShapeColor.setup();
+
         controller.setup();
 
         MyMouseListener handler=new MyMouseListener(paintCanvas, appState);
         paintCanvas.addMouseListener(handler);
+
 
         // For example purposes only; remove all lines below from your final project.
 

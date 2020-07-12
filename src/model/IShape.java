@@ -2,6 +2,8 @@ package model;
 
 import model.interfaces.IApplicationState;
 
+import java.awt.*;
+
 public interface IShape {
     void setWidth(int width);
 
@@ -31,9 +33,9 @@ public interface IShape {
 
     IApplicationState getAppState();
 
-    ShapeColor getPrimaryColor();
+    Color getPrimaryColor();
 
-    ShapeColor getSecondaryColor();
+    Color getSecondaryColor();
 
     ShapeType getShapeType();
 

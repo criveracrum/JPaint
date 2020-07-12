@@ -13,21 +13,22 @@ public class DrawRectangle implements IShapeStrategy{
     private int xPoint;
     private int yPoint;
     private IApplicationState appState;
+    private Graphics2D graphics2d;
 
 
 
-    public DrawRectangle(PaintCanvasBase paintCanvas,  int width, int height, int xPoint, int yPoint, IApplicationState appState){
+    public DrawRectangle(PaintCanvasBase paintCanvas, int width, int height, int xPoint, int yPoint, IApplicationState appState, Graphics2D graphics2d){
         this.paintCanvas = paintCanvas;
         this.width = width;
         this.height = height;
         this.xPoint = xPoint;
         this.yPoint = yPoint;
         this.appState = appState;
-
+        this.graphics2d = graphics2d;
     }
     @Override
     public void draw() {
-        Graphics2D graphics2d = paintCanvas.getGraphics2D();
+
 
         graphics2d.fillRect(xPoint, yPoint, width, height);
 
