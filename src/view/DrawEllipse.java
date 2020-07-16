@@ -38,7 +38,7 @@ public class DrawEllipse implements IShapeStrategy{
     @Override
     public void draw() {
 
-        graphics2d.fillOval(xPoint, yPoint, width, height);
+
         if (type.equals(ShapeShadingType.FILLED_IN))
             drawFilledIn();
         else if(type.equals(ShapeShadingType.OUTLINE))
@@ -51,12 +51,17 @@ public class DrawEllipse implements IShapeStrategy{
 
     }
     private void drawOutline(){
-
+        graphics2d.setStroke(new BasicStroke(5));
+        graphics2d.setColor(shape.getSecondaryColor());
+        graphics2d.drawOval(shape.getxPoint(), shape.getyPoint(), shape.getWidth(), shape.getHeight());
     }
     private void drawFilledIn(){
-
+        graphics2d.setColor(shape.getPrimaryColor());
+        graphics2d.fillOval(shape.getxPoint(), shape.getyPoint(), shape.getWidth(), shape.getHeight());
     }
     private void drawAll(){
+        graphics2d.setColor(shape.getPrimaryColor());
         graphics2d.fillOval(shape.getxPoint(), shape.getyPoint(), shape.getWidth(), shape.getHeight());
+        drawOutline();
     }
 }

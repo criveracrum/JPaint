@@ -35,7 +35,7 @@ public class DrawTriangle implements IShapeStrategy{
     public void draw() {
 
 
-        graphics2d.fillPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 }, new int[]{yPoint+height, yPoint +height , yPoint}, 3);
+
         if (type.equals(ShapeShadingType.FILLED_IN))
             drawFilledIn();
         else if(type.equals(ShapeShadingType.OUTLINE))
@@ -45,13 +45,19 @@ public class DrawTriangle implements IShapeStrategy{
 
     }
     private void drawOutline(){
-
+        graphics2d.setStroke(new BasicStroke(5));
+        graphics2d.setColor(shape.getSecondaryColor());
+        graphics2d.drawPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 }, new int[]{yPoint+height, yPoint +height , yPoint}, 3);
     }
     private void drawFilledIn(){
+        graphics2d.setColor(shape.getPrimaryColor());
+        graphics2d.fillPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 }, new int[]{yPoint+height, yPoint +height , yPoint}, 3);
 
     }
     private void drawAll(){
+        graphics2d.setColor(shape.getPrimaryColor());
         graphics2d.fillPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 }, new int[]{yPoint+height, yPoint +height , yPoint}, 3);
+        drawOutline();
 
     }
 }

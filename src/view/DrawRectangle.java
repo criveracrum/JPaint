@@ -47,12 +47,17 @@ public class DrawRectangle implements IShapeStrategy{
 
     }
     private void drawOutline(){
-
+        graphics2d.setStroke(new BasicStroke(5));
+        graphics2d.setColor(shape.getSecondaryColor());
+        graphics2d.drawRect(shape.getxPoint(), shape.getyPoint(), shape.getWidth(), shape.getHeight());
     }
     private void drawFilledIn(){
-
+        graphics2d.setColor(shape.getPrimaryColor());
+        graphics2d.fillRect(shape.getxPoint(), shape.getyPoint(), shape.getWidth(), shape.getHeight());
     }
     private void drawAll(){
-        graphics2d.fillRect(xPoint, yPoint, width, height);
+        graphics2d.setColor(shape.getPrimaryColor());
+        graphics2d.fillRect(shape.getxPoint(), shape.getyPoint(), shape.getWidth(), shape.getHeight());
+        drawOutline();
     }
 }

@@ -134,11 +134,6 @@ public class Shape implements IShape {
     public void draw() {
         Graphics2D graphics2d = paintCanvas.getGraphics2D();
 
-
-        graphics2d.setColor(getPrimaryColor());
-
-
-
         if (shapeType == ShapeType.ELLIPSE) {
             IShapeStrategy ellipse = new DrawEllipse(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d, getShadeType(), this);
             ellipse.draw();
