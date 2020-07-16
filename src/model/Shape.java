@@ -140,19 +140,19 @@ public class Shape implements IShape {
 
 
         if (shapeType == ShapeType.ELLIPSE) {
-            IShapeStrategy ellipse = new DrawEllipse(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d);
+            IShapeStrategy ellipse = new DrawEllipse(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d, getShadeType(), this);
             ellipse.draw();
 
 
         }
         else if (shapeType == ShapeType.RECTANGLE){
-            IShapeStrategy rectangle = new DrawRectangle(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d);
+            IShapeStrategy rectangle = new DrawRectangle(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d, getShadeType(), this);
             rectangle.draw();
 
 
         }
         else if (shapeType == ShapeType.TRIANGLE){
-            IShapeStrategy triangle = new DrawTriangle(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d);
+            IShapeStrategy triangle = new DrawTriangle(paintCanvas, width, height, xPoint, yPoint, appState, graphics2d, getShadeType(), this);
             triangle.draw();
 
         }
