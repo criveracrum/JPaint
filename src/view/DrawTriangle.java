@@ -9,26 +9,12 @@ import java.awt.*;
 
 public class DrawTriangle implements IShapeStrategy{
 
-    private PaintCanvasBase paintCanvas;
-    private int width;
-    private int height;
-    private int xPoint;
-    private int yPoint;
-    private IApplicationState appState;
+
     private Graphics2D graphics2d;
-    private final ShapeShadingType type;
     private final Shape shape;
 
-    public DrawTriangle(PaintCanvasBase paintCanvas, int width, int height, int xPoint, int yPoint, IApplicationState appState,
-                        Graphics2D graphics2d, ShapeShadingType type, Shape shape){
-        this.paintCanvas = paintCanvas;
-        this.width = width;
-        this.height = height;
-        this.xPoint = xPoint;
-        this.yPoint = yPoint;
-        this.appState = appState;
+    public DrawTriangle(Graphics2D graphics2d, Shape shape){
         this.graphics2d = graphics2d;
-        this.type = type;
         this.shape = shape;
     }
     @Override
@@ -36,28 +22,34 @@ public class DrawTriangle implements IShapeStrategy{
 
 
 
-        if (type.equals(ShapeShadingType.FILLED_IN))
+        if (shape.getShadeType().equals(ShapeShadingType.FILLED_IN))
             drawFilledIn();
-        else if(type.equals(ShapeShadingType.OUTLINE))
+        else if(shape.getShadeType().equals(ShapeShadingType.OUTLINE))
             drawOutline();
-        else if (type.equals(ShapeShadingType.OUTLINE_AND_FILLED_IN))
+        else if (shape.getShadeType().equals(ShapeShadingType.OUTLINE_AND_FILLED_IN))
             drawAll();
 
     }
     private void drawOutline(){
         graphics2d.setStroke(new BasicStroke(5));
-        graphics2d.setColor(shape.getSecondaryColor());
-        graphics2d.drawPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 }, new int[]{yPoint+height, yPoint +height , yPoint}, 3);
+        graphics2d.setColor(shape.getPrimaryColor());
+        graphics2d.drawPolygon(new int[]{shape.getxPoint(), shape.getxPoint() + shape.getWidth(), shape.getxPoint()+ shape.getWidth()/2 },
+                new int[]{shape.getyPoint()+ shape.getHeight(), shape.getyPoint() +shape.getHeight() , shape.getyPoint()}, 3);
     }
     private void drawFilledIn(){
         graphics2d.setColor(shape.getPrimaryColor());
-        graphics2d.fillPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 }, new int[]{yPoint+height, yPoint +height , yPoint}, 3);
+        graphics2d.fillPolygon(new int[]{shape.getxPoint(), shape.getxPoint() + shape.getWidth(), shape.getxPoint()+ shape.getWidth()/2 },
+                new int[]{shape.getyPoint()+ shape.getHeight(), shape.getyPoint() +shape.getHeight() , shape.getyPoint()}, 3);
 
     }
     private void drawAll(){
         graphics2d.setColor(shape.getPrimaryColor());
-        graphics2d.fillPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 }, new int[]{yPoint+height, yPoint +height , yPoint}, 3);
-        drawOutline();
+        graphics2d.fillPolygon(new int[]{shape.getxPoint(), shape.getxPoint() + shape.getWidth(), shape.getxPoint()+ shape.getWidth()/2 },
+                new int[]{shape.getyPoint()+ shape.getHeight(), shape.getyPoint() +shape.getHeight() , shape.getyPoint()}, 3);
+        graphics2d.setStroke(new BasicStroke(5));
+        graphics2d.setColor(shape.getSecondaryColor());
+        graphics2d.drawPolygon(new int[]{shape.getxPoint(), shape.getxPoint() + shape.getWidth(), shape.getxPoint()+ shape.getWidth()/2 },
+                new int[]{shape.getyPoint()+ shape.getHeight(), shape.getyPoint() +shape.getHeight() , shape.getyPoint()}, 3);
 
     }
 }
