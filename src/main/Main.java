@@ -4,6 +4,7 @@ import controller.IJPaintController;
 import controller.JPaintController;
 import controller.MyMouseListener;
 import model.ShapeColor;
+import model.ShapeList;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -20,6 +21,7 @@ public class Main {
         PaintCanvasBase paintCanvas = new PaintCanvas();
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
+        ShapeList shapeList = new ShapeList();
         ApplicationState appState = new ApplicationState(uiModule);
         IJPaintController controller = new JPaintController(uiModule, appState);
 
@@ -27,7 +29,7 @@ public class Main {
 
         controller.setup();
 
-        MyMouseListener handler=new MyMouseListener(paintCanvas, appState);
+        MyMouseListener handler=new MyMouseListener(paintCanvas, appState, shapeList);
         paintCanvas.addMouseListener(handler);
 
 

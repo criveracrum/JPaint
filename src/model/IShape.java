@@ -41,5 +41,13 @@ public interface IShape {
 
     ShapeShadingType getShadeType();
 
+    Graphics2D getGraphics2D();
+
+    void setGraphics2D();
+
+    void setSelected();
+
+    boolean getSelected();
+
     void draw();
 }

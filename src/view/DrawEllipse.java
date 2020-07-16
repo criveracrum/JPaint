@@ -40,6 +40,8 @@ public class DrawEllipse implements IShapeStrategy{
         graphics2d.setStroke(new BasicStroke(5));
         graphics2d.setColor(shape.getPrimaryColor());
         graphics2d.drawOval(shape.getxPoint(), shape.getyPoint(), shape.getWidth(), shape.getHeight());
+
+
     }
     private void drawFilledIn(){
         graphics2d.setColor(shape.getPrimaryColor());

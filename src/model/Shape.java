@@ -21,6 +21,8 @@ public class Shape implements IShape {
     private ShapeType shapeType;
     private ShapeShadingType shadeType;
     private PaintCanvasBase paintCanvas;
+    private Graphics2D graphics2d;
+    public boolean selected;
 
 
 
@@ -36,6 +38,8 @@ public class Shape implements IShape {
         setShapeType(appState.getActiveShapeType());
         setPrimaryColor(appState.getActivePrimaryColor());
         setSecondaryColor(appState.getActiveSecondaryColor());
+        this.selected = false;
+        setGraphics2D();
 
 
     }
@@ -130,9 +134,28 @@ public class Shape implements IShape {
         return shadeType;
     }
 
+    public Graphics2D getGraphics2D() {
+        return graphics2d;
+    }
+
+    public void setGraphics2D() {
+        Graphics2D graphics2d = paintCanvas.getGraphics2D();
+        this.graphics2d = graphics2d;
+    }
+
+    @Override
+    public void setSelected(){
+        selected = !selected;
+    }
+
+    @Override
+    public boolean getSelected() {
+        return selected;
+    }
+
     @Override
     public void draw() {
-        Graphics2D graphics2d = paintCanvas.getGraphics2D();
+
 
         if (shapeType == ShapeType.ELLIPSE) {
             IShapeStrategy ellipse = new DrawEllipse(graphics2d, this);
@@ -152,4 +175,6 @@ public class Shape implements IShape {
 
         }
     }
+
+
 }
