@@ -14,7 +14,7 @@ import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
-public class drawCommand implements ICommand {
+public class DrawCommand implements ICommand {
 
     private final ShapeList list;
     private PaintCanvasBase paintCanvas;
@@ -26,7 +26,7 @@ public class drawCommand implements ICommand {
 
 
 
-    public drawCommand(PaintCanvasBase paintCanvas, int width, int height, int xPoint, int yPoint, IApplicationState appState, ShapeList list){
+    public DrawCommand(PaintCanvasBase paintCanvas, int width, int height, int xPoint, int yPoint, IApplicationState appState, ShapeList list){
         this.paintCanvas = paintCanvas;
         this.width = width;
         this.height = height;

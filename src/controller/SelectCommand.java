@@ -8,7 +8,7 @@ import model.ShapeList;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class selectCommand implements ICommand {
+public class SelectCommand implements ICommand {
 
     private int width;
     private int height;
@@ -16,7 +16,7 @@ public class selectCommand implements ICommand {
     private final int y;
     private final ShapeList shapeList;
 
-    public selectCommand(int width, int height, int x, int y, ShapeList shapeList) {
+    public SelectCommand(int width, int height, int x, int y, ShapeList shapeList) {
         this.width = width;
         this.height = height;
         this.x = x;
@@ -30,7 +30,7 @@ public class selectCommand implements ICommand {
     }
 
     private void detectCollision() {
-        if (width == 0 && height ==0){
+        if (width == 0 ||  height ==0 ){
             this.width = 1;
             this.height = 1;
 

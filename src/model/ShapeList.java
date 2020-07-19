@@ -16,11 +16,21 @@ public class ShapeList {
     }
 
     public void listRemove(IShape shape){
-        shapeList.remove(shape);
+        //shapeList.remove(shape);
         Graphics2D graphics2D= shape.getGraphics2D();
         graphics2D.setColor(Color.WHITE);
         graphics2D.fillRect(shape.getxPoint(), shape.getyPoint(), shape.getWidth(), shape.getHeight());
     }
+    public void listRemoveAllOriginal(ArrayList<IShape> shapes){
+        shapeList.removeAll(shapes);
+    }
+    public void listAddAllNew(ArrayList<IShape> shapes){
+        //System.out.println("ADDING");
+        for (IShape each : shapes){
+            listAdd(each);
+        }
+    }
+
 
 
 

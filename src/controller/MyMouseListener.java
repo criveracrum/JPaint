@@ -6,12 +6,8 @@ import model.StartAndEndPointMode;
 import model.interfaces.IApplicationState;
 import view.interfaces.PaintCanvasBase;
 
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-
-import static java.lang.System.out;
 
 public class MyMouseListener extends MouseAdapter {
 
@@ -45,19 +41,21 @@ public class MyMouseListener extends MouseAdapter {
         int width = Math.abs(e.getX() - startPoint.getX());
         int height = Math.abs(e.getY() - startPoint.getY());
         if (modeSelect.equals(StartAndEndPointMode.DRAW)) {
-            ICommand draw = new drawCommand(paintCanvas, width, height, Math.min(startPoint.getX(), e.getX()),
+            ICommand draw = new DrawCommand(paintCanvas, width, height, Math.min(startPoint.getX(), e.getX()),
                     Math.min(startPoint.getY(), e.getY()), appState, shapeList);
             draw.run();
         }
         else if (modeSelect.equals(StartAndEndPointMode.SELECT)){
-            ICommand select = new selectCommand(width, height, Math.min(startPoint.getX(), e.getX()),
+            ICommand select = new SelectCommand(width, height, Math.min(startPoint.getX(), e.getX()),
                     Math.min(startPoint.getY(), e.getY()), shapeList);
             select.run();
 
         }
         else if (modeSelect.equals(StartAndEndPointMode.MOVE)){
-            ICommand move = new moveCommand(Math.min(startPoint.getX(), e.getX()),
-                    Math.min(startPoint.getY(), e.getY()), shapeList);
+
+            ICommand move = new MoveCommand(Math.min(startPoint.getX(), e.getX()),
+                    Math.min(startPoint.getY(), e.getY()), shapeList,
+                    e.getY() - startPoint.getY(), e.getX() - startPoint.getX());
             move.run();
         }
 
