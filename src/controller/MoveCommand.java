@@ -27,15 +27,13 @@ public class MoveCommand implements ICommand {
         ArrayList<IShape> list = shapeList.getList();
         ArrayList<IShape> removed = new ArrayList<IShape>();
         ArrayList<IShape> changed = new ArrayList<IShape>();
-        for (Iterator<IShape> iterator = list.iterator(); iterator.hasNext(); ){
-            IShape shape = iterator.next();
+        for (IShape shape : list ){
             if (shape.getSelected()) {
                 shapeList.listRemove(shape);
                 removed.add(shape);
                 shape.setxPoint(shape.getxPoint() + diffX);
                 shape.setyPoint(shape.getyPoint() + diffY);
                 changed.add(shape);
-
             }
         }
         shapeList.listRemoveAllOriginal(removed);
