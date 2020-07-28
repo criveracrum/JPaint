@@ -4,10 +4,12 @@ import model.Point;
 import model.ShapeList;
 import model.StartAndEndPointMode;
 import model.interfaces.IApplicationState;
+import view.EventName;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.EventListener;
 
 public class MyMouseListener extends MouseAdapter {
 
@@ -58,6 +60,8 @@ public class MyMouseListener extends MouseAdapter {
                     e.getY() - startPoint.getY(), e.getX() - startPoint.getX());
             move.run();
         }
+
+
 
     }
 }

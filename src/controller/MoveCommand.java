@@ -40,6 +40,5 @@ public class MoveCommand implements ICommand {
         shapeList.listAddAllNew(changed);
 
 
-
     }
 }

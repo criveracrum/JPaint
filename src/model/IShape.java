@@ -50,4 +50,6 @@ public interface IShape {
     boolean getSelected();
 
     void draw();
+
+
 }

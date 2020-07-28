@@ -26,6 +26,7 @@ public class DrawCommand implements ICommand {
 
 
 
+
     public DrawCommand(PaintCanvasBase paintCanvas, int width, int height, int xPoint, int yPoint, IApplicationState appState, ShapeList list){
         this.paintCanvas = paintCanvas;
         this.width = width;
@@ -42,6 +43,7 @@ public class DrawCommand implements ICommand {
 
         Shape shape = new model.Shape(width, height, xPoint, yPoint, appState, paintCanvas);
         list.listAdd(shape);
+
 
 
 

@@ -27,6 +27,7 @@ public class SelectCommand implements ICommand {
     @Override
     public void run() {
         detectCollision();
+        showSelection();
     }
 
     private void detectCollision() {
@@ -35,9 +36,9 @@ public class SelectCommand implements ICommand {
             this.height = 1;
 
         }
-        ArrayList<IShape> list = shapeList.getList();
+
         Rectangle selection = new Rectangle(x, y, width, height);
-        for (IShape each : list)
+        for (IShape each : shapeList.getList())
         {
             Rectangle shape = new Rectangle(each.getxPoint(), each.getyPoint(), each.getWidth(), each.getHeight());
 
@@ -47,5 +48,17 @@ public class SelectCommand implements ICommand {
 
         }
 
+    }
+    private void showSelection(){
+        for (IShape each : shapeList.getList()){
+            if (each.getSelected()){
+                Graphics2D graphics2D = each.getGraphics2D();
+                Stroke dashed = new BasicStroke
+                        (3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0 );
+                graphics2D.setStroke(dashed);
+                graphics2D.setColor(Color.BLACK);
+                graphics2D.drawRect(each.getxPoint(), each.getyPoint(), each.getWidth(), each.getHeight());
+            }
+        }
     }
 }
