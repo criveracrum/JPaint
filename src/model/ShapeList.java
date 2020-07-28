@@ -42,6 +42,7 @@ public class ShapeList {
     }
 
 
-
-
+    public ArrayList<IShape> getCopyList() {
+        return copiedShapes;
+    }
 }

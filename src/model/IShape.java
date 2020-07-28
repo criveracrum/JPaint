@@ -1,6 +1,7 @@
 package model;
 
 import model.interfaces.IApplicationState;
+import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
@@ -50,6 +51,10 @@ public interface IShape {
     boolean getSelected();
 
     void draw();
+
+    IShape getDuplicateShape();
+
+    PaintCanvasBase getPaintCanvas();
 
 
 }

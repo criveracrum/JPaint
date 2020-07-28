@@ -59,7 +59,9 @@ public class MyMouseListener extends MouseAdapter {
                     Math.min(startPoint.getY(), e.getY()), shapeList,
                     e.getY() - startPoint.getY(), e.getX() - startPoint.getX());
             move.run();
+
         }
+
 
 
 

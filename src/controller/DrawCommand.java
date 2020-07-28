@@ -45,7 +45,6 @@ public class DrawCommand implements ICommand {
         list.listAdd(shape);
 
 
-
-
     }
+
 }

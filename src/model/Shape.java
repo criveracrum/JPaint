@@ -44,6 +44,10 @@ public class Shape implements IShape {
 
     }
 
+    public PaintCanvasBase getPaintCanvas() {
+        return paintCanvas;
+    }
+
     @Override
     public void setWidth(int width) {
         this.width = width;
@@ -174,6 +178,12 @@ public class Shape implements IShape {
             triangle.draw();
 
         }
+    }
+
+    @Override
+    public IShape getDuplicateShape() {
+        Shape shape = new Shape(width, height, xPoint + 5, yPoint + 5, appState, paintCanvas);
+        return shape;
     }
 
 
