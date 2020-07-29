@@ -1,10 +1,7 @@
 package model;
 
 import model.interfaces.IApplicationState;
-import view.DrawEllipse;
-import view.DrawRectangle;
-import view.DrawTriangle;
-import view.IShapeStrategy;
+import view.*;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
@@ -164,25 +161,35 @@ public class Shape implements IShape {
         if (shapeType == ShapeType.ELLIPSE) {
             IShapeStrategy ellipse = new DrawEllipse(graphics2d, this);
             ellipse.draw();
+            if (getSelected()){
+                IShapeStrategy selected = new SelectedDecorator(this);
+                selected.drawOutline();
+            }
 
 
         }
         else if (shapeType == ShapeType.RECTANGLE){
             IShapeStrategy rectangle = new DrawRectangle(graphics2d, this);
             rectangle.draw();
-
+            if (getSelected()){
+                IShapeStrategy selected = new SelectedDecorator(this);
+                selected.drawOutline();
+            }
 
         }
         else if (shapeType == ShapeType.TRIANGLE){
             IShapeStrategy triangle = new DrawTriangle(graphics2d, this);
             triangle.draw();
-
+            if (getSelected()){
+                IShapeStrategy selected = new SelectedDecorator(this);
+                selected.drawOutline();
+            }
         }
     }
 
     @Override
     public IShape getDuplicateShape() {
-        Shape shape = new Shape(width, height, xPoint + 5, yPoint + 5, appState, paintCanvas);
+        Shape shape = new Shape(width, height, xPoint + 30, yPoint + 30, appState, paintCanvas);
         return shape;
     }
 

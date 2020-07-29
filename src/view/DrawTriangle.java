@@ -30,19 +30,19 @@ public class DrawTriangle implements IShapeStrategy{
             drawAll();
 
     }
-    private void drawOutline(){
+    public void drawOutline(){
         graphics2d.setStroke(new BasicStroke(5));
         graphics2d.setColor(shape.getPrimaryColor());
         graphics2d.drawPolygon(new int[]{shape.getxPoint(), shape.getxPoint() + shape.getWidth(), shape.getxPoint()+ shape.getWidth()/2 },
                 new int[]{shape.getyPoint()+ shape.getHeight(), shape.getyPoint() +shape.getHeight() , shape.getyPoint()}, 3);
     }
-    private void drawFilledIn(){
+    public void drawFilledIn(){
         graphics2d.setColor(shape.getPrimaryColor());
         graphics2d.fillPolygon(new int[]{shape.getxPoint(), shape.getxPoint() + shape.getWidth(), shape.getxPoint()+ shape.getWidth()/2 },
                 new int[]{shape.getyPoint()+ shape.getHeight(), shape.getyPoint() +shape.getHeight() , shape.getyPoint()}, 3);
 
     }
-    private void drawAll(){
+    public void drawAll(){
         graphics2d.setColor(shape.getPrimaryColor());
         graphics2d.fillPolygon(new int[]{shape.getxPoint(), shape.getxPoint() + shape.getWidth(), shape.getxPoint()+ shape.getWidth()/2 },
                 new int[]{shape.getyPoint()+ shape.getHeight(), shape.getyPoint() +shape.getHeight() , shape.getyPoint()}, 3);

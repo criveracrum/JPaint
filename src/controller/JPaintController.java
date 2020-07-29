@@ -30,5 +30,6 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_START_POINT_ENDPOINT_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.COPY, () -> new CopyCommand(shapeList).run() );
         uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(shapeList).run() );
+        uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(shapeList).run() );
     }
 }

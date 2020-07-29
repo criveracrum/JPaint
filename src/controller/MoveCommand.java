@@ -1,11 +1,9 @@
 package controller;
 
-import controller.ICommand;
 import model.IShape;
 import model.ShapeList;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class MoveCommand implements ICommand {
     private final int x;
