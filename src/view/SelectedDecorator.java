@@ -25,6 +25,9 @@ public class SelectedDecorator implements IShapeStrategy {
                 (3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0 );
         graphics2D.setStroke(dashed);
         graphics2D.setColor(Color.BLACK);
+        if (!shape.getSelected()){
+            graphics2D.setColor(Color.WHITE);
+        }
         int xPoint = shape.getxPoint()-5;
         int yPoint = shape.getyPoint()-5;
         int width = shape.getWidth()+10;

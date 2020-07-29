@@ -146,7 +146,14 @@ public class Shape implements IShape {
 
     @Override
     public void setSelected(){
+
         selected = !selected;
+
+        if (!selected){
+            IShapeStrategy selected = new SelectedDecorator(this);
+            selected.drawOutline();
+        }
+
     }
 
     @Override
