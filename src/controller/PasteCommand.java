@@ -19,10 +19,9 @@ public class PasteCommand implements ICommand{
 
         for (IShape shape : list.getCopyList()) {
             IShape copyShape = shape.getDuplicateShape();
-            ICommand draw= new DrawCommand(copyShape.getPaintCanvas(), copyShape.getWidth(), copyShape.getHeight(), copyShape.getxPoint(),
-                    copyShape.getyPoint(), copyShape.getAppState(), list);
-            draw.run();
+            list.listAdd(copyShape);
 
+            copyShape.draw();
         }
     }
 }

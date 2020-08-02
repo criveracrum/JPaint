@@ -196,8 +196,9 @@ public class Shape implements IShape {
 
     @Override
     public IShape getDuplicateShape() {
-        Shape shape = new Shape(width, height, xPoint + 30, yPoint + 30, appState, paintCanvas);
-        return shape;
+        Shape newShape = new Shape(width, height, xPoint + 30, yPoint + 30, appState, paintCanvas);
+        newShape.setShapeType(getShapeType());
+        return newShape;
     }
 
 

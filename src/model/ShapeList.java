@@ -33,10 +33,10 @@ public class ShapeList {
     }
     public void addCopy(IShape shape){
         copiedShapes.add(shape);
-        System.out.println(copiedShapes.size());
     }
     public void removeCopy(){
-        copiedShapes.removeAll(copiedShapes);
+        //copiedShapes.removeAll(copiedShapes);
+        copiedShapes.clear();
     }
 
     public void listRemove(IShape shape){
