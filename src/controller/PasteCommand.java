@@ -20,7 +20,6 @@ public class PasteCommand implements ICommand{
         for (IShape shape : list.getCopyList()) {
             IShape copyShape = shape.getDuplicateShape();
             list.listAdd(copyShape);
-
             copyShape.draw();
         }
     }
