@@ -29,8 +29,9 @@ public class MoveCommand implements ICommand {
             if (shape.getSelected()) {
                 shapeList.listRemove(shape);
                 removed.add(shape);
-                shape.setxPoint(shape.getxPoint() + diffX);
-                shape.setyPoint(shape.getyPoint() + diffY);
+//                shape.setxPoint(shape.getxPoint() + diffX);
+//                shape.setyPoint(shape.getyPoint() + diffY);
+                shape.move(diffX, diffY);
                 changed.add(shape);
             }
         }

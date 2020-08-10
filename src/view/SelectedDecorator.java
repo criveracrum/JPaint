@@ -64,4 +64,28 @@ public class SelectedDecorator implements IShapeStrategy {
     public void drawAll() {
 
     }
+    public void drawGroup() {
+        Graphics2D graphics2D = shape.getGraphics2D();
+        Stroke dashed = new BasicStroke
+                (3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0 );
+        graphics2D.setStroke(dashed);
+        graphics2D.setColor(Color.ORANGE);
+        if (!shape.getSelected()){
+            graphics2D.setColor(Color.WHITE);
+        }
+        int xPoint = shape.getxPoint()-15;
+        int yPoint = shape.getyPoint()-15;
+        int width = shape.getWidth()+20;
+        int height = shape.getHeight()+20;
+        if (shape.getShapeType().equals(ShapeType.TRIANGLE) )
+            graphics2D.drawPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 },
+                    new int[]{yPoint+ height, yPoint +height , yPoint}, 3);
+        else if(shape.getShapeType().equals(ShapeType.RECTANGLE) )
+            graphics2D.drawRect(xPoint, yPoint, width, height);
+        else if(shape.getShapeType().equals(ShapeType.ELLIPSE) )
+            graphics2D.drawOval(xPoint, yPoint, width, height);
+
+    }
+
+
 }

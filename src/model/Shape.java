@@ -46,6 +46,12 @@ public class Shape implements IShape {
     }
 
     @Override
+    public void move(int diffX, int diffY) {
+        setxPoint(xPoint + diffX);
+        setyPoint(yPoint + diffY);
+    }
+
+    @Override
     public void setWidth(int width) {
         this.width = width;
     }

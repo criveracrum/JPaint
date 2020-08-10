@@ -56,5 +56,5 @@ public interface IShape {
 
     PaintCanvasBase getPaintCanvas();
 
-
+    void move(int diffX, int diffY);
 }
