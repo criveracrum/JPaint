@@ -1,6 +1,8 @@
 package main;
 
 import controller.*;
+import model.IPaintAdapter;
+import model.PaintAdapter;
 import model.ShapeColor;
 import model.ShapeList;
 import model.persistence.ApplicationState;
@@ -17,11 +19,13 @@ import java.util.EnumMap;
 public class Main {
     public static void main(String[] args){
         PaintCanvasBase paintCanvas = new PaintCanvas();
+
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ShapeList shapeList = new ShapeList(paintCanvas);
         ApplicationState appState = new ApplicationState(uiModule);
         IJPaintController controller = new JPaintController(uiModule, appState, shapeList);
+
 
         model.ShapeColor.setup();
 
@@ -56,7 +60,7 @@ public class Main {
 //
 //        graphics2d.setColor(Color.RED);
 //        graphics2d.fillRect(12, 13, 200, 400);
-
+//
 
 
 

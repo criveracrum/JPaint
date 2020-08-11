@@ -48,6 +48,7 @@ public class SelectCommand implements ICommand {
 
         }
 
+
     }
     private void showSelection(){
         for (IShape each : shapeList.getList()){

@@ -18,7 +18,7 @@ public class CompositeGroupShape implements IShape {
     private int endY;
     private int xPoint;
     private int yPoint;
-    private boolean selected = true;
+    private boolean selected ;
 
 
     public CompositeGroupShape(PaintCanvasBase canvas) {
@@ -29,6 +29,7 @@ public class CompositeGroupShape implements IShape {
         this.setyPoint(0);
         this.setEndX(0);
         this.setEndY(0);
+        this.selected = true;
     }
 
 
@@ -115,6 +116,9 @@ public class CompositeGroupShape implements IShape {
         IShapeStrategy group = new SelectedDecorator(this);
 
         group.drawOutline();
+        for (IShape each : children){
+            each.draw();
+        }
 
 
     }

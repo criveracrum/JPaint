@@ -6,7 +6,7 @@ import model.ShapeList;
 
 import java.util.ArrayList;
 
-public class GroupCommand implements ICommand{
+public class GroupCommand implements ICommand, IUndoRedo{
     private final ShapeList shapeList;
     private CompositeGroupShape group;
 
@@ -26,6 +26,24 @@ public class GroupCommand implements ICommand{
         }
         shapeList.listRemoveAllOriginal(toRemove);
         shapeList.listAdd(group);
+        CommandHistory.add(this);
+
+    }
+
+    @Override
+    public void undo() {
+        shapeList.listRemove(group);
+        shapeList.listAddAllNew(group.getChildren());
+        group.setSelected();
+        group.draw();
+    }
+
+    @Override
+    public void redo() {
+        shapeList.listRemoveAllOriginal(group.getChildren());
+        shapeList.listAdd(group);
+        group.setSelected();
+        group.draw();
 
     }
 }

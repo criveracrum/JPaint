@@ -14,7 +14,7 @@ import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
-public class DrawCommand implements ICommand {
+public class DrawCommand implements ICommand, IUndoRedo{
 
     private final ShapeList list;
     private PaintCanvasBase paintCanvas;
@@ -23,6 +23,7 @@ public class DrawCommand implements ICommand {
     private int xPoint;
     private int yPoint;
     private IApplicationState appState;
+    private IShape shape;
 
 
 
@@ -41,12 +42,21 @@ public class DrawCommand implements ICommand {
     @Override
     public void run() {
 
-        Shape shape = new model.Shape(width, height, xPoint, yPoint, appState, paintCanvas);
+        shape = new model.Shape(width, height, xPoint, yPoint, appState, paintCanvas);
         list.listAdd(shape);
+        CommandHistory.add(this);
 
 
     }
 
 
+    @Override
+    public void undo() {
+        list.listRemove(shape);
+    }
 
+    @Override
+    public void redo() {
+        list.listAdd(shape);
+    }
 }
