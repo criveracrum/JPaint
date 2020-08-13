@@ -1,11 +1,14 @@
 package model;
 
+import controller.ICommand;
 import model.interfaces.IApplicationState;
+import view.IShapeStrategy;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
 public interface IShape {
+
     void setWidth(int width);
 
     void setHeight(int height);
@@ -57,4 +60,6 @@ public interface IShape {
     PaintCanvasBase getPaintCanvas();
 
     void move(int diffX, int diffY);
+
+    IShapeStrategy getStrategy();
 }

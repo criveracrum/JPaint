@@ -34,7 +34,7 @@ public class GroupCommand implements ICommand, IUndoRedo{
     public void undo() {
         shapeList.listRemove(group);
         shapeList.listAddAllNew(group.getChildren());
-        group.setSelected();
+        //group.setSelected();
         group.draw();
     }
 
@@ -42,7 +42,7 @@ public class GroupCommand implements ICommand, IUndoRedo{
     public void redo() {
         shapeList.listRemoveAllOriginal(group.getChildren());
         shapeList.listAdd(group);
-        group.setSelected();
+        //group.setSelected();
         group.draw();
 
     }

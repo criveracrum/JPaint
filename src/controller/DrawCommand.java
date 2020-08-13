@@ -1,10 +1,8 @@
 package controller;
 
 
-import model.IShape;
+import model.*;
 import model.Shape;
-import model.ShapeList;
-import model.ShapeType;
 import model.interfaces.IApplicationState;
 import view.DrawEllipse;
 import view.DrawRectangle;
@@ -41,9 +39,11 @@ public class DrawCommand implements ICommand, IUndoRedo{
 
     @Override
     public void run() {
+        ShapeFactory shape1 = new ShapeFactory(width, height, xPoint, yPoint, appState, paintCanvas);
 
-        shape = new model.Shape(width, height, xPoint, yPoint, appState, paintCanvas);
+        shape = shape1.create();
         list.listAdd(shape);
+
         CommandHistory.add(this);
 
 
@@ -59,4 +59,5 @@ public class DrawCommand implements ICommand, IUndoRedo{
     public void redo() {
         list.listAdd(shape);
     }
+
 }

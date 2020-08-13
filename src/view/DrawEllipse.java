@@ -13,17 +13,10 @@ public class DrawEllipse implements IShapeStrategy{
     private Shape shape;
 
 
-
-    public DrawEllipse(Graphics2D graphics2d, Shape shape){
-
+    @Override
+    public void draw(Graphics2D graphics2d, Shape shape) {
         this.graphics2d = graphics2d;
         this.shape = shape;
-
-
-    }
-    @Override
-    public void draw() {
-
 
         if (shape.getShadeType().equals(ShapeShadingType.FILLED_IN))
             drawFilledIn();

@@ -1,6 +1,7 @@
 package view;
 
 import model.IShape;
+import model.Shape;
 import model.ShapeType;
 import view.IShapeStrategy;
 
@@ -13,8 +14,9 @@ public class SelectedDecorator implements IShapeStrategy {
         this.shape = shape;
     }
 
+
     @Override
-    public void draw() {
+    public void draw(Graphics2D graphics2d, Shape shape) {
 
     }
 
@@ -70,13 +72,13 @@ public class SelectedDecorator implements IShapeStrategy {
                 (3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0 );
         graphics2D.setStroke(dashed);
         graphics2D.setColor(Color.ORANGE);
-        if (!shape.getSelected()){
-            graphics2D.setColor(Color.WHITE);
-        }
-        int xPoint = shape.getxPoint()-15;
-        int yPoint = shape.getyPoint()-15;
-        int width = shape.getWidth()+20;
-        int height = shape.getHeight()+20;
+//        if (!shape.getSelected()){
+//            graphics2D.setColor(Color.WHITE);
+//        }
+        int xPoint = shape.getxPoint()-5;
+        int yPoint = shape.getyPoint()-5;
+        int width = shape.getWidth()+10;
+        int height = shape.getHeight()+10;
         if (shape.getShapeType().equals(ShapeType.TRIANGLE) )
             graphics2D.drawPolygon(new int[]{xPoint, xPoint + width, xPoint+ width/2 },
                     new int[]{yPoint+ height, yPoint +height , yPoint}, 3);

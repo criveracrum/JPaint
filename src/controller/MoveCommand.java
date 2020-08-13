@@ -45,13 +45,18 @@ public class MoveCommand implements ICommand ,IUndoRedo{
 
     @Override
     public void undo() {
-        shapeList.listAddAllNew(removed);
         shapeList.listRemoveAllOriginal(changed);
+        for (IShape each : removed)
+            each.move(-diffX, -diffY);
+        shapeList.listAddAllNew(removed);
+
     }
 
     @Override
     public void redo() {
         shapeList.listRemoveAllOriginal(removed);
+        for (IShape each : changed)
+            each.move(diffX, diffY);
         shapeList.listAddAllNew(changed);
     }
 }

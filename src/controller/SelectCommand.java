@@ -44,6 +44,7 @@ public class SelectCommand implements ICommand {
 
             if (selection.intersects(shape)) {
                 each.setSelected();
+
             }
 
         }
@@ -60,7 +61,7 @@ public class SelectCommand implements ICommand {
 //                graphics2D.setColor(Color.BLACK);
 //                graphics2D.drawRect(each.getxPoint(), each.getyPoint(), each.getWidth(), each.getHeight());
                 each.draw();
-            }
+           }
         }
     }
 }

@@ -1,10 +1,7 @@
 package main;
 
 import controller.*;
-import model.IPaintAdapter;
-import model.PaintAdapter;
-import model.ShapeColor;
-import model.ShapeList;
+import model.*;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -33,6 +30,8 @@ public class Main {
 
         MyMouseListener handler=new MyMouseListener(paintCanvas, appState, shapeList);
         paintCanvas.addMouseListener(handler);
+        IPaintAdapter adapter = new PaintAdapter(paintCanvas, shapeList);
+        shapeList.getAdapter(adapter);
 
 
         // For example purposes only; remove all lines below from your final project.

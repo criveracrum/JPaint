@@ -19,7 +19,7 @@ public class ShapeList {
 
     public ShapeList(PaintCanvasBase paintCanvas) {
         this.paintCanvas = paintCanvas;
-        this.adapter = new PaintAdapter(paintCanvas, this);
+        //this.adapter = new PaintAdapter(paintCanvas, this);
     }
 
 
@@ -51,7 +51,7 @@ public class ShapeList {
 //        IShapeStrategy removal= new SelectedDecorator(shape);
 //        removal.drawFilledIn();
 
-        adapter.clear();
+       // adapter.clear();
 
         adapter.repaint();
 
@@ -60,6 +60,7 @@ public class ShapeList {
         shapeList.removeAll(shapes);
 
         adapter.repaint();
+        //adapter.clear();
 
     }
     public void listAddAllNew(ArrayList<IShape> shapes){
@@ -68,12 +69,15 @@ public class ShapeList {
             listAdd(each);
         }
         adapter.repaint();
+        //adapter.clear();
     }
 
 
     public ArrayList<IShape> getCopyList() {
         return copiedShapes;
     }
-
+    public void getAdapter(IPaintAdapter adapter){
+        this.adapter=adapter;
+    }
 
 }

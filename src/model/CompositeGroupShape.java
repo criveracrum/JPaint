@@ -1,5 +1,6 @@
 package model;
 
+import controller.ICommand;
 import model.interfaces.IApplicationState;
 import view.IShapeStrategy;
 import view.SelectedDecorator;
@@ -29,7 +30,7 @@ public class CompositeGroupShape implements IShape {
         this.setyPoint(0);
         this.setEndX(0);
         this.setEndY(0);
-        this.selected = true;
+        //this.selected = true;
     }
 
 
@@ -88,6 +89,11 @@ public class CompositeGroupShape implements IShape {
         moveChildren(diffX, diffY);
     }
 
+    @Override
+    public IShapeStrategy getStrategy() {
+        return null;
+    }
+
 
     public ArrayList<IShape> getChildren() {
         return children;
@@ -113,15 +119,20 @@ public class CompositeGroupShape implements IShape {
     public void draw() {
 
 
-        IShapeStrategy group = new SelectedDecorator(this);
-
-        group.drawOutline();
+        SelectedDecorator group = new SelectedDecorator(this);
+        //group.drawOutline();
+        group.drawGroup();
         for (IShape each : children){
             each.draw();
+        }
+        if (getSelected()){
+            IShapeStrategy selected = new SelectedDecorator(this);
+            selected.drawOutline();
         }
 
 
     }
+
 
 
     @Override
@@ -230,6 +241,7 @@ public class CompositeGroupShape implements IShape {
     @Override
     public void setSelected() {
         selected = !selected;
+        this.draw();
     }
 
     @Override

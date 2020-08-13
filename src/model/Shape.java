@@ -1,5 +1,6 @@
 package model;
 
+import controller.ICommand;
 import model.interfaces.IApplicationState;
 import view.*;
 import view.interfaces.PaintCanvasBase;
@@ -20,11 +21,13 @@ public class Shape implements IShape {
     private PaintCanvasBase paintCanvas;
     private Graphics2D graphics2d;
     public boolean selected;
+    private ICommand command;
+    IShapeStrategy strategy;
 
 
 
 
-    public Shape(int width, int height, int xPoint, int yPoint, IApplicationState appState, PaintCanvasBase paintCanvas) {
+    public Shape(int width, int height, int xPoint, int yPoint, IApplicationState appState, PaintCanvasBase paintCanvas, IShapeStrategy strategy) {
         this.width = width;
         this.height = height;
         this.xPoint = xPoint;
@@ -37,9 +40,11 @@ public class Shape implements IShape {
         setSecondaryColor(appState.getActiveSecondaryColor());
         this.selected = false;
         setGraphics2D();
+        this.strategy = strategy;
 
 
     }
+
 
     public PaintCanvasBase getPaintCanvas() {
         return paintCanvas;
@@ -49,6 +54,12 @@ public class Shape implements IShape {
     public void move(int diffX, int diffY) {
         setxPoint(xPoint + diffX);
         setyPoint(yPoint + diffY);
+    }
+
+    @Override
+    public IShapeStrategy getStrategy() {
+
+        return this.strategy;
     }
 
     @Override
@@ -167,43 +178,24 @@ public class Shape implements IShape {
         return selected;
     }
 
+
+
     @Override
     public void draw() {
 
 
-        if (shapeType == ShapeType.ELLIPSE) {
-            IShapeStrategy ellipse = new DrawEllipse(graphics2d, this);
-            ellipse.draw();
+            strategy.draw(getGraphics2D(), this);
             if (getSelected()){
                 IShapeStrategy selected = new SelectedDecorator(this);
                 selected.drawOutline();
             }
 
-
-        }
-        else if (shapeType == ShapeType.RECTANGLE){
-            IShapeStrategy rectangle = new DrawRectangle(graphics2d, this);
-            rectangle.draw();
-            if (getSelected()){
-                IShapeStrategy selected = new SelectedDecorator(this);
-                selected.drawOutline();
-            }
-
-        }
-        else if (shapeType == ShapeType.TRIANGLE){
-            IShapeStrategy triangle = new DrawTriangle(graphics2d, this);
-            triangle.draw();
-            if (getSelected()){
-                IShapeStrategy selected = new SelectedDecorator(this);
-                selected.drawOutline();
-            }
-        }
     }
 
     @Override
     public IShape getDuplicateShape() {
 
-        Shape newShape = new Shape(width, height, xPoint + 30, yPoint + 30, appState, paintCanvas);
+        Shape newShape = new Shape(width, height, xPoint + 30, yPoint + 30, appState, paintCanvas, strategy);
         newShape.setShapeType(getShapeType());
         newShape.setShadeType(getShadeType());
         newShape.setPrimaryColor(this.primaryColor);
