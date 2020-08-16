@@ -166,10 +166,10 @@ public class Shape implements IShape {
 
         selected = !selected;
 
-        if (!selected){
+//        if (!selected){
             IShapeStrategy selected = new SelectedDecorator(this);
             selected.drawOutline();
-        }
+//        }
 
     }
 

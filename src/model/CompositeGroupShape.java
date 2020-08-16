@@ -30,13 +30,13 @@ public class CompositeGroupShape implements IShape {
         this.setyPoint(0);
         this.setEndX(0);
         this.setEndY(0);
-        //this.selected = true;
+        this.selected = true;
     }
 
 
 
     public void addChild(IShape each) {
-
+        each.setSelected();
         if (children.isEmpty()){
             this.yPoint =each.getyPoint();
             this.xPoint =each.getxPoint();
@@ -257,6 +257,7 @@ public class CompositeGroupShape implements IShape {
         CompositeGroupShape newComposite = new CompositeGroupShape(canvas);
         for (IShape each : children){
             IShape copy = each.getDuplicateShape();
+            copy.setSelected();
             copy.draw();
             newComposite.addChild(copy);
 

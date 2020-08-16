@@ -1,12 +1,7 @@
 package model;
 
-import controller.ICommand;
-import controller.RepaintCommand;
-import view.IShapeStrategy;
-import view.SelectedDecorator;
 import view.interfaces.PaintCanvasBase;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class ShapeList {

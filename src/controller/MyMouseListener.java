@@ -21,6 +21,7 @@ public class MyMouseListener extends MouseAdapter {
     private IApplicationState appState;
 
 
+
     public MyMouseListener(PaintCanvasBase paintCanvas, IApplicationState appState, ShapeList shapeList){
         this.paintCanvas = paintCanvas;
         this.appState = appState;
